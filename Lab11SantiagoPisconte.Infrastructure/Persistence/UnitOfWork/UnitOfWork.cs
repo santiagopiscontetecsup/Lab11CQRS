@@ -13,6 +13,7 @@ public class UnitOfWork : IUnitOfWork
     public IGenericRepository<Role, Guid> Roles { get; }
     public IGenericRepository<UserRole, Guid> UserRoles { get; }
     public IGenericRepository<Ticket, Guid> Tickets { get; }
+    public IGenericRepository<Response, Guid> Responses { get; }
 
     public UnitOfWork(PisconteTicketSystemContext context)
     {
@@ -21,6 +22,7 @@ public class UnitOfWork : IUnitOfWork
         Roles = new GenericRepository<Role, Guid>(_context);
         UserRoles = new GenericRepository<UserRole, Guid>(_context);
         Tickets = new GenericRepository<Ticket, Guid>(_context);
+        Responses = new GenericRepository<Response, Guid>(_context);
     }
 
     public async Task<int> SaveAsync()

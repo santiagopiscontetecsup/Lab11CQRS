@@ -1,4 +1,7 @@
 using Lab11SantiagoPisconte.Api.Models;
+using Lab11SantiagoPisconte.Application.Services.Interfaces;
+using Lab11SantiagoPisconte.Application.Services.Jobs;
+using Lab11SantiagoPisconte.Application.Services.Notifications;
 using Lab11SantiagoPisconte.Domain.Interfaces.Repositories;
 using Lab11SantiagoPisconte.Domain.Interfaces.UnitOfWork;
 using Lab11SantiagoPisconte.Infrastructure.Persistence.Repositories;
@@ -21,6 +24,11 @@ public static class InfrastructureServicesExtensions
         services.AddTransient<IUnitOfWork, UnitOfWork>();
         
         services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
+        
+        services.AddTransient<NotificationService>();
+        
+        services.AddTransient<ITicketCleanupService, TicketCleanupService>();
+
         
         return services;
     }

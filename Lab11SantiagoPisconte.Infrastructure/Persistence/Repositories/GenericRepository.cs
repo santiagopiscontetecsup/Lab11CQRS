@@ -1,3 +1,4 @@
+using System.Linq.Expressions;
 using Lab11SantiagoPisconte.Api.Models;
 using Lab11SantiagoPisconte.Domain.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,20 @@ public class GenericRepository<T, TKey> : IGenericRepository<T, TKey> where T : 
     {
         return await _dbSet.ToListAsync();
     }
+    public async Task<IEnumerable<T>> FindWithIncludeAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
+    {
+        IQueryable<T> query = _dbSet;
 
+        if (includes != null)
+        {
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+        }
+
+        return await query.Where(predicate).ToListAsync();
+    }
     public async Task AddAsync(T entity)
     {
         await _dbSet.AddAsync(entity);

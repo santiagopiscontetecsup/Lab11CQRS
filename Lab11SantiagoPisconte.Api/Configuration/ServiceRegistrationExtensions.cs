@@ -14,6 +14,7 @@ public static class ServiceRegistrationExtensions
     {
         services.AddHttpContextAccessor();
         services.AddInfrastructureServices(configuration);
+        services.AddHangfireServices(configuration);
         services.AddAuthentication((JwtBearerDefaults.AuthenticationScheme))
             .AddJwtBearer(options =>
             {
@@ -38,7 +39,7 @@ public static class ServiceRegistrationExtensions
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(c =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Lab11-Pisconte-ArchitectureHexagonal", Version = "v1" });
+            c.SwaggerDoc("v1", new OpenApiInfo() { Title = "Lab12-Pisconte-ArchitectureHexagonal", Version = "v1" });
             c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
                 In = ParameterLocation.Header,

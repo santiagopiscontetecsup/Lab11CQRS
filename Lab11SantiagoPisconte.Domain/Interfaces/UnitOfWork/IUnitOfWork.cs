@@ -9,6 +9,7 @@ public interface IUnitOfWork
     IGenericRepository<Role, Guid> Roles { get; }
     IGenericRepository<UserRole, Guid> UserRoles { get; }
     IGenericRepository<Ticket, Guid> Tickets { get; }
+    IGenericRepository<Response, Guid> Responses { get; }
 
     Task<int> SaveAsync();
 }
