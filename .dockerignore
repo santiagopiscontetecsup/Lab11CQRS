@@ -1,0 +1,17 @@
+# Ignorar binarios y temporales
+bin/
+obj/
+*.user
+*.suo
+*.vs/
+
+# Ignorar Git
+.git
+.gitignore
+
+# Ignorar archivos de Rider
+.idea/
+*.sln.iml
+
+# Ignorar archivos de publicación
+published/
